@@ -18,7 +18,7 @@ phases:
       - docker tag $ECR_REPONAME:latest $ECR_URI:latest
   post_build:
     commands:
-      - docker push $ECR_REPONAME:latest
+      - docker push $ECR_URI:latest
       - printf '[{"name":"node","imageUri":"%s"}]' $ECR_URI:latest > imagedefinitions.json
 
 artifacts:
