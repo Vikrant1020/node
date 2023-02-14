@@ -20,7 +20,7 @@ phases:
   post_build:
     commands:
       - docker push $ECR_URI:latest
-      - printf '[{"name":"$ECS_SERVICE","imageUri":"%s"}]' $ECR_URI:latest > imagedefinitions.json
+      - printf '[{"name":"node","imageUri":"%s"}]' $ECR_URI:latest > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
