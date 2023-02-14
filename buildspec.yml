@@ -19,7 +19,7 @@ phases:
   post_build:
     commands:
       - docker push $ECR_REPONAME:latest
-      - printf '[{"name":"golang-container","imageUri":"%s"}]' $ECR_URI:latest > imagedefinitions.json
+      - printf '[{"name":"node","imageUri":"%s"}]' $ECR_URI:latest > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
