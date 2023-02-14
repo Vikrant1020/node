@@ -7,6 +7,7 @@ phases:
       - echo $AWS_DEFAULT_REGION
       - echo $ECR_REPONAME
       - echo $ECR_URI
+      - echo $ECS_SERVICE
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 875525659788.dkr.ecr.us-east-1.amazonaws.com
       #- REPOSITORY_NAME="ecr-repo"      
       #- REPOSITORY_URI=public.ecr.aws/v4j2a7d2/ecr-repo
@@ -19,7 +20,7 @@ phases:
   post_build:
     commands:
       - docker push $ECR_URI:latest
-      - printf '[{"name":"node","imageUri":"%s"}]' $ECR_URI:latest > imagedefinitions.json
+      - printf '[{"name":"$ECS_SERVICE","imageUri":"%s"}]' $ECR_URI:latest > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
